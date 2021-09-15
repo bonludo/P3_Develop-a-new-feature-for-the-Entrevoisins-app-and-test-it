@@ -1,18 +1,15 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.model.Neighbour;
-import com.openclassrooms.entrevoisins.service.NeighbourApiService;
+import com.openclassrooms.entrevoisins.ui.add.AddNeighbourActivity;
+import com.openclassrooms.entrevoisins.ui.detail.DetailNeighbourActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,7 +50,7 @@ public class ListNeighbourActivity extends AppCompatActivity implements OnNeighb
 
     @Override
     public void onNeighbourClicked(Neighbour neighbour) {
-        DetailNeighbourActivity.navigate(this, neighbour);
+        startActivity(DetailNeighbourActivity.navigate(this, neighbour));
     }
 }
 

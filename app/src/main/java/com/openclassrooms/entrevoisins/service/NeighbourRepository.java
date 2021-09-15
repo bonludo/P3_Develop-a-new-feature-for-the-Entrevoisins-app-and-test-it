@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Neighbour API client
  */
-public interface NeighbourApiService {
+public interface NeighbourRepository {
 
     /**
      * Get all my Neighbours
@@ -28,7 +28,7 @@ public interface NeighbourApiService {
      */
     void createNeighbour(Neighbour neighbour);
 
-    void getFavorite(Neighbour neighbour);
-    //todo add to favorite
+    List<Neighbour> getFavorites();
+    //todo add to favorite // toggle
 
 }
