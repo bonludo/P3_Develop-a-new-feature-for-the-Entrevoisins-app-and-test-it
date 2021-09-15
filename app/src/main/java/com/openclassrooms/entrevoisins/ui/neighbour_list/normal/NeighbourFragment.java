@@ -1,4 +1,4 @@
-package com.openclassrooms.entrevoisins.ui.neighbour_list;
+package com.openclassrooms.entrevoisins.ui.neighbour_list.normal;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,19 +14,19 @@ import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
-import com.openclassrooms.entrevoisins.service.NeighbourApiService;
+import com.openclassrooms.entrevoisins.service.NeighbourRepository;
+import com.openclassrooms.entrevoisins.ui.neighbour_list.MyNeighbourRecyclerViewAdapter;
+import com.openclassrooms.entrevoisins.ui.neighbour_list.OnNeighbourClickedListener;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 
-import static com.openclassrooms.entrevoisins.service.DummyNeighbourGenerator.DUMMY_NEIGHBOURS;
-
 
 public class NeighbourFragment extends Fragment {
 
-    private NeighbourApiService mApiService;
+    private NeighbourRepository mNeighbourRepository;
     private List<Neighbour> mNeighbours;
     private RecyclerView mRecyclerView;
     private OnNeighbourClickedListener onNeighbourClickedListener;
@@ -36,8 +36,7 @@ public class NeighbourFragment extends Fragment {
      * @return @{@link NeighbourFragment}
      */
     public static NeighbourFragment newInstance() {
-        NeighbourFragment fragment = new NeighbourFragment();
-        return fragment;
+        return new NeighbourFragment();
     }
 
     @Override
@@ -50,7 +49,7 @@ public class NeighbourFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mApiService = DI.getNeighbourApiService();
+        mNeighbourRepository = DI.getNeighbourApiService();
     }
 
     @Override
@@ -68,7 +67,7 @@ public class NeighbourFragment extends Fragment {
      * Init the List of neighbours
      */
     private void initList() {
-        mNeighbours = mApiService.getNeighbours();
+        mNeighbours = mNeighbourRepository.getNeighbours();
         mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours, onNeighbourClickedListener));
         //3 intermédiaire qui met en contact l'activity et l'adapteur a l'aide de onNeighbourclickedListener
     }
@@ -99,7 +98,7 @@ public class NeighbourFragment extends Fragment {
      */
     @Subscribe
     public void onDeleteNeighbour(DeleteNeighbourEvent event) {
-        mApiService.deleteNeighbour(event.neighbour);
+        mNeighbourRepository.deleteNeighbour(event.neighbour);
         initList();
     }
 }

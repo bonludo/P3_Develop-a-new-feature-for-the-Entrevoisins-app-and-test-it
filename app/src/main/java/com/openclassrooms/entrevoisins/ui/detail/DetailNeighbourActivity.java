@@ -1,5 +1,6 @@
-package com.openclassrooms.entrevoisins.ui.neighbour_list;
+package com.openclassrooms.entrevoisins.ui.detail;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -18,6 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+@SuppressLint("NonConstantResourceId")
 public class DetailNeighbourActivity extends AppCompatActivity {
 
 
@@ -101,14 +103,7 @@ public class DetailNeighbourActivity extends AppCompatActivity {
 
     public static Intent navigate (Context context, Neighbour neighbour){
         Intent intentDetailNeighbourActivity = new Intent (context, DetailNeighbourActivity.class);
-        intentDetailNeighbourActivity.putExtra("EXTRA_NEIGHBOUR",Neighbour.class);
-        intentDetailNeighbourActivity.putExtra("Name", neighbour.getName());
-        intentDetailNeighbourActivity.putExtra("Phone", neighbour.getPhoneNumber());
-        intentDetailNeighbourActivity.putExtra("Adress", neighbour.getAddress());
-        intentDetailNeighbourActivity.putExtra("Social", neighbour.getSocial());
-        intentDetailNeighbourActivity.putExtra("AboutMe", neighbour.getAboutMe());
-        intentDetailNeighbourActivity.putExtra("AvatarUrl", neighbour.getAvatarUrl());
-        intentDetailNeighbourActivity.putExtra("favorite", neighbour.isFavorite());
+        intentDetailNeighbourActivity.putExtra("EXTRA_NEIGHBOUR",neighbour);
         return intentDetailNeighbourActivity;
     }
 }
