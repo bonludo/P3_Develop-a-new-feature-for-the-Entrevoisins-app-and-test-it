@@ -46,7 +46,6 @@ public class ListNeighbourActivity extends AppCompatActivity implements OnNeighb
     }
 
 
-
     @OnClick(R.id.add_neighbour)
     void addNeighbour() {
         AddNeighbourActivity.navigate(this);
@@ -54,16 +53,7 @@ public class ListNeighbourActivity extends AppCompatActivity implements OnNeighb
 
     @Override
     public void onNeighbourClicked(Neighbour neighbour) {
-        Intent intentDetailNeighbourActivity = new Intent (this, DetailNeighbourActivity.class);
-//      Log.d("ListNeighbourActivity","Test trace debug");
-//      Log.e("ListNeighbourActivity","erreur factice");
-        intentDetailNeighbourActivity.putExtra("Name", neighbour.getName());
-        intentDetailNeighbourActivity.putExtra("Phone",neighbour.getPhoneNumber());
-        intentDetailNeighbourActivity.putExtra("Adress",neighbour.getAddress());
-        intentDetailNeighbourActivity.putExtra("Social",neighbour.getSocial());
-        intentDetailNeighbourActivity.putExtra("AboutMe",neighbour.getAboutMe());
-        intentDetailNeighbourActivity.putExtra("AvatarUrl",neighbour.getAvatarUrl());
-        intentDetailNeighbourActivity.putExtra("favorite",neighbour.isFavorite());
-        startActivity(intentDetailNeighbourActivity);
+        DetailNeighbourActivity.navigate(this, neighbour);
     }
 }
+

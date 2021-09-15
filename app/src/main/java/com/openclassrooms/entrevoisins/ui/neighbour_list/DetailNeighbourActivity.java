@@ -1,15 +1,13 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.ColorFilter;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -23,6 +21,7 @@ import butterknife.OnClick;
 public class DetailNeighbourActivity extends AppCompatActivity {
 
 
+    boolean favorite;
     @BindView(R.id.detailavatar)
     ImageView detailavatar;
     @BindView(R.id.detailnamepicture)
@@ -42,36 +41,35 @@ public class DetailNeighbourActivity extends AppCompatActivity {
     @BindView(R.id.detailback)
     ImageButton detailBack;
 
-    boolean favorite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_neighbour);
         ButterKnife.bind(this);
-        Intent x = getIntent();
-        detailname.setText(x.getStringExtra(
+        Intent intentDetail = getIntent();
+        detailname.setText(intentDetail.getStringExtra(
                 "Name"));
-        namePicture.setText(x.getStringExtra(
+        namePicture.setText(intentDetail.getStringExtra(
                 "Name"));
-        phone.setText(x.getStringExtra(
+        phone.setText(intentDetail.getStringExtra(
                 "Phone"));
-        aboutMe.setText(x.getStringExtra(
+        aboutMe.setText(intentDetail.getStringExtra(
                 "AboutMe"));
-        social.setText(x.getStringExtra(
+        social.setText(intentDetail.getStringExtra(
                 "Social"));
-        address.setText(x.getStringExtra(
+        address.setText(intentDetail.getStringExtra(
                 "Adress"));
         Glide.with(DetailNeighbourActivity.this)
-                .load(x.getStringExtra(
+                .load(intentDetail.getStringExtra(
                         "AvatarUrl"))
                 .centerCrop()
                 .into(detailavatar);
 
-
-        if (favorite = x.getBooleanExtra("favorite", true)) {
+        if (intentDetail.getBooleanExtra("favorite",true)) {
             fabAddFavorite.setImageResource(R.drawable.ic_star_white_24dp);
             fabAddFavorite.setColorFilter(Color.parseColor("#FECB23"));
+
         } else {
             fabAddFavorite.setImageResource(R.drawable.ic_star_border_white_24dp);
             fabAddFavorite.setColorFilter(Color.parseColor("#FECB23"));
@@ -84,21 +82,34 @@ public class DetailNeighbourActivity extends AppCompatActivity {
 
     }
 
-     @OnClick(R.id.fabAddfavorite)
+    @OnClick(R.id.fabAddfavorite)
 
-        public void fabAddFavorite () {
-         favorite = !favorite;
-           if (favorite) {
-                fabAddFavorite.setImageResource(R.drawable.ic_star_white_24dp);
-                fabAddFavorite.setColorFilter(Color.parseColor("#FECB23"));
+    public void fabAddFavorite() {
+        favorite = !favorite;
+        if (favorite) {
+            fabAddFavorite.setImageResource(R.drawable.ic_star_white_24dp);
+            fabAddFavorite.setColorFilter(Color.parseColor("#FECB23"));
+
+        }
+        else {
+            fabAddFavorite.setImageResource(R.drawable.ic_star_border_white_24dp);
+            fabAddFavorite.setColorFilter(Color.parseColor("#FECB23"));
+        }
 
 
-            } else {
-                fabAddFavorite.setImageResource(R.drawable.ic_star_border_white_24dp);
-                fabAddFavorite.setColorFilter(Color.parseColor("#FECB23"));
+    }
 
-
-            }
-}
+    public static Intent navigate (Context context, Neighbour neighbour){
+        Intent intentDetailNeighbourActivity = new Intent (context, DetailNeighbourActivity.class);
+        intentDetailNeighbourActivity.putExtra("EXTRA_NEIGHBOUR",Neighbour.class);
+        intentDetailNeighbourActivity.putExtra("Name", neighbour.getName());
+        intentDetailNeighbourActivity.putExtra("Phone", neighbour.getPhoneNumber());
+        intentDetailNeighbourActivity.putExtra("Adress", neighbour.getAddress());
+        intentDetailNeighbourActivity.putExtra("Social", neighbour.getSocial());
+        intentDetailNeighbourActivity.putExtra("AboutMe", neighbour.getAboutMe());
+        intentDetailNeighbourActivity.putExtra("AvatarUrl", neighbour.getAvatarUrl());
+        intentDetailNeighbourActivity.putExtra("favorite", neighbour.isFavorite());
+        return intentDetailNeighbourActivity;
+    }
 }
 
