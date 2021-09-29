@@ -49,9 +49,12 @@ public class AddNeighbourActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_neighbour);
         ButterKnife.bind(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mApiService = DI.getNeighbourApiService();
+        mApiService = DI.getNeighbourRepository();
         init();
     }
+/* creation initialisation des vue est appel de la méthode init creer plus bas
+
+ */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

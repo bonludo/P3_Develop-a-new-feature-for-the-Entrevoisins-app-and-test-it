@@ -14,7 +14,7 @@ public class DI {
      * Get an instance on @{@link NeighbourRepository}
      * @return
      */
-    public static NeighbourRepository getNeighbourApiService() {
+    public static NeighbourRepository getNeighbourRepository() {
         return neighbourRepository;
     }
 

@@ -1,5 +1,7 @@
 package com.openclassrooms.entrevoisins.model;
 
+import android.content.Intent;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -127,3 +129,9 @@ public class Neighbour implements Serializable {
         return Objects.hash(id);
     }
 }
+
+//a classe Object possède deux méthodes qui sont relatives à l'identité des objets : equals() et hashCode().
+//
+//La méthode equals() permet de tester l'égalité de deux objets d'un point de vue sémantique.
+//
+//La méthode hashCode() permet de renvoyer la valeur de hachage de l'objet sur lequel elle est invoquée.

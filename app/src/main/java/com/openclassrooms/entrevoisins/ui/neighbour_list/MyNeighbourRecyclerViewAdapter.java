@@ -26,7 +26,7 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
     private final List<Neighbour> mNeighbours;
     private final OnNeighbourClickedListener onNeighbourClickedListener;
 
-    public MyNeighbourRecyclerViewAdapter(List<Neighbour> items,OnNeighbourClickedListener onNeighbourClickedListener) {
+    public MyNeighbourRecyclerViewAdapter(List<Neighbour> items, OnNeighbourClickedListener onNeighbourClickedListener) {
         mNeighbours = items;
         this.onNeighbourClickedListener = onNeighbourClickedListener;
         // 2 on passe qui va écouter les click sur les neighbour
@@ -59,7 +59,7 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            onNeighbourClickedListener.onNeighbourClicked(neighbour);
+                onNeighbourClickedListener.onNeighbourClicked(neighbour);
             }
             // on défini ce qui passe lors du click
         });

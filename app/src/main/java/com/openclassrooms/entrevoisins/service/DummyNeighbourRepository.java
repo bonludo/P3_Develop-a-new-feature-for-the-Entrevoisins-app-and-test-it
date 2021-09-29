@@ -12,7 +12,6 @@ public class DummyNeighbourRepository implements NeighbourRepository {
 
     private List<Neighbour> neighbours = DummyNeighbourGenerator.generateNeighbours();
 
-
     /**
      * {@inheritDoc}
      */
@@ -53,6 +52,15 @@ public class DummyNeighbourRepository implements NeighbourRepository {
 
         return favoriteNeighbours;
     }
+
+    public void addFavorite(Neighbour neighbour, boolean favorite) {
+        if (favorite) {neighbours.set(neighbour.getId(),neighbour.setFavorite();)
+        }
+    }
 }
+
+// Déclaration d'une liste  List<neighbour> neighbour
+// Développement des méthodes
+
 
 

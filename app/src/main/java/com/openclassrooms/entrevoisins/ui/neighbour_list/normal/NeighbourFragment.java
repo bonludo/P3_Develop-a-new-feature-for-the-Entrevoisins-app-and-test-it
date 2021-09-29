@@ -30,6 +30,7 @@ public class NeighbourFragment extends Fragment {
     private List<Neighbour> mNeighbours;
     private RecyclerView mRecyclerView;
     private OnNeighbourClickedListener onNeighbourClickedListener;
+    // ajout de la variable OnNeighbourClickedListener
 
     /**
      * Create and return a new instance
@@ -49,7 +50,8 @@ public class NeighbourFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mNeighbourRepository = DI.getNeighbourApiService();
+        mNeighbourRepository = DI.getNeighbourRepository();
+
     }
 
     @Override

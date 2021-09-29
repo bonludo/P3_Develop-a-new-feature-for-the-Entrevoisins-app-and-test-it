@@ -34,10 +34,37 @@ public class NeighbourServiceTest {
         assertThat(neighbours, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedNeighbours.toArray()));
     }
 
-    @Test
+     @Test
     public void deleteNeighbourWithSuccess() {
         Neighbour neighbourToDelete = service.getNeighbours().get(0);
         service.deleteNeighbour(neighbourToDelete);
         assertFalse(service.getNeighbours().contains(neighbourToDelete));
+    }
+
+    @Test
+    public void addNeighbourWithSuccess() {
+        /*mockito
+        simuler ajout d'un neighbour
+         */
+    }
+
+    @Test
+    public void accessDetailNeighbourWithSuccess() {
+
+    }
+
+    @Test
+    public void getFavoriteNeighbourWithSucess() {
+
+    }
+
+    @Test
+    public void addFaroviteNeighbourWithSuccess() {
+
+    }
+
+    @Test
+    public void removeFavoriteNeighbourWithSuccess() {
+
     }
 }

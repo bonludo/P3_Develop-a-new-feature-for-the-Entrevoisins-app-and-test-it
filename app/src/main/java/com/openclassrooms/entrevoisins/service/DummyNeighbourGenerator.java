@@ -41,3 +41,9 @@ public abstract class DummyNeighbourGenerator {
         return new ArrayList<>(DUMMY_NEIGHBOURS);
     }
 }
+
+/* Class abstraite car on ne connait pas le nombre de neighbour
+cette class contient un objet static (accessible partout) list <neighbour> [DUMMY NEIGHBOURS = Array.asList] avec leur different attribut
+
+*** méthode static (accessible partout) generateNeighbours retourne la liste des neighbour ***
+ */
