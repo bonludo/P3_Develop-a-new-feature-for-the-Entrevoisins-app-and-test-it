@@ -53,8 +53,27 @@ public class DummyNeighbourRepository implements NeighbourRepository {
         return favoriteNeighbours;
     }
 
-    public void addFavorite(Neighbour neighbour, boolean favorite) {
-        if (favorite) {neighbours.set(neighbour.getId(),neighbour.setFavorite();)
+    public void setFavorite(Neighbour neighbour, boolean favorite) {
+
+        int index = 0;
+
+        Neighbour foundNeighbour = null;
+
+
+        for (int i = 0; i < neighbours.size(); i++) {
+            Neighbour currentNeighbour = neighbours.get(i);
+
+            if (neighbour.getId() == currentNeighbour.getId()) {
+                foundNeighbour = currentNeighbour;
+                index = i;
+                break;
+            }
+        }
+
+        if (foundNeighbour != null) {
+            foundNeighbour.setFavorite(favorite);
+
+            neighbours.set(index,foundNeighbour);
         }
     }
 }

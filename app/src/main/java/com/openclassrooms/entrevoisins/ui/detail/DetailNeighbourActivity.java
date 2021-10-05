@@ -47,6 +47,7 @@ public class DetailNeighbourActivity extends AppCompatActivity {
     ImageButton detailBack;
 
     boolean favorite;
+
     private static final String EXTRA_NEIGHBOUR = "EXTRA_NEIGHBOUR";
     private NeighbourRepository mApiService;
 
@@ -93,12 +94,12 @@ public class DetailNeighbourActivity extends AppCompatActivity {
                 if (favorite) {
                     fabAddFavorite.setImageResource(R.drawable.ic_star_white_24dp);
                     fabAddFavorite.setColorFilter(Color.parseColor("#FECB23"));
-                     mApiService.addFavorite(neighbour,favorite);
+                     mApiService.setFavorite(neighbour,favorite);
                     Toast.makeText(DetailNeighbourActivity.this, "Add to Favorite", Toast.LENGTH_SHORT).show();
                 } else {
                     fabAddFavorite.setImageResource(R.drawable.ic_star_border_white_24dp);
                     fabAddFavorite.setColorFilter(Color.parseColor("#FECB23"));
-                    mApiService.addFavorite(neighbour,favorite);
+                    mApiService.setFavorite(neighbour,favorite);
                     Toast.makeText(DetailNeighbourActivity.this, "Remove on favorite", Toast.LENGTH_SHORT).show();
                 }
 

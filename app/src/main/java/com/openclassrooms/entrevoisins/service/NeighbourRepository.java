@@ -31,7 +31,7 @@ public interface NeighbourRepository {
     List<Neighbour> getFavorites();
     //todo add to favorite // toggle
 
-   void addFavorite(Neighbour neighbour, boolean favorite);
+   void setFavorite(Neighbour neighbour, boolean favorite);
 
 }
 /* Interface public (accessible partout) qui dit ce que fait l'application
