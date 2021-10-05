@@ -1,8 +1,13 @@
 package com.openclassrooms.entrevoisins.service;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+
 import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
-import com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourActivity;
 
 import org.hamcrest.collection.IsIterableContainingInAnyOrder;
 import org.junit.Before;
@@ -11,12 +16,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Unit test on Neighbour service
@@ -38,7 +37,7 @@ public class NeighbourServiceTest {
         assertThat(neighbours, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedNeighbours.toArray()));
     }
 
-     @Test
+    @Test
     public void deleteNeighbourWithSuccess() {
         Neighbour neighbourToDelete = service.getNeighbours().get(0);
         service.deleteNeighbour(neighbourToDelete);
@@ -49,50 +48,46 @@ public class NeighbourServiceTest {
     public void addNeighbourButDontFavoriteWithSuccess() {
         //Given
 
-        List<Neighbour> startNeighbourSize = DummyNeighbourGenerator.DUMMY_NEIGHBOURS;
-
-        Neighbour TestNeighbour = new Neighbour
-                (1000,
-              "JohnDoe",
-              "avatarUrl",
-              "11 route des ombres",
-              "0644164286",
-              "JohnDoe@facebook.fr",
-              "j'aime tous qu'on ne comprend pas",
-              false);
+        Neighbour testNeighbour = new Neighbour(1000,
+            "JohnDoe",
+            "avatarUrl",
+            "11 route des ombres",
+            "0644164286",
+            "JohnDoe@facebook.fr",
+            "j'aime tous qu'on ne comprend pas",
+            false
+        );
 
 
-      // When
-        service.createNeighbour(TestNeighbour);
+        // When
+        service.createNeighbour(testNeighbour);
 
         //Then
-        assertTrue(service.getNeighbours().contains(TestNeighbour));
-        assertFalse(service.getFavorites().contains(TestNeighbour));
-        assertEquals(TestNeighbour,service.getNeighbours().get(service.getNeighbours().size()-1));
-        assertNotEquals(startNeighbourSize.size(),service.getNeighbours().size());
+        assertTrue(service.getNeighbours().contains(testNeighbour));
+        assertFalse(service.getFavorites().contains(testNeighbour));
+        assertEquals(testNeighbour, service.getNeighbours().get(service.getNeighbours().size() - 1));
     }
 
     @Test
-    public void addFaroviteNeighbourWithSuccess() {
+    public void addFavoriteNeighbourWithSuccess() {
         Neighbour neighbourFavorite = service.getNeighbours().get(0);
 
-        service.setFavorite(neighbourFavorite,true);
+        service.setFavorite(neighbourFavorite, true);
 
         assertTrue(service.getFavorites().contains(neighbourFavorite));
-        assertEquals(1,service.getFavorites().size());
+        assertEquals(1, service.getFavorites().size());
     }
 
 
     @Test
     public void removeNeighbourFromFavoriteWithSuccess() {
         Neighbour neighbourFavorite = service.getNeighbours().get(0);
-        service.setFavorite(neighbourFavorite,true);
-        assertTrue(service.getFavorites().contains(neighbourFavorite));
-        assertEquals(1,service.getFavorites().size());
+        service.setFavorite(neighbourFavorite, true);
 
-        service.setFavorite(neighbourFavorite,false);
+        service.setFavorite(neighbourFavorite, false);
 
         assertFalse(service.getFavorites().contains(neighbourFavorite));
-        assertEquals(0,service.getFavorites().size());
+        assertEquals(0, service.getFavorites().size());
+        assertTrue(service.getNeighbours().contains(neighbourFavorite));
     }
 }
