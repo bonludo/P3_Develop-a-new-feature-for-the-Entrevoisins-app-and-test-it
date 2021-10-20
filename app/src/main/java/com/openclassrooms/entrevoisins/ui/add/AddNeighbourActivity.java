@@ -52,9 +52,6 @@ public class AddNeighbourActivity extends AppCompatActivity {
         mApiService = DI.getNeighbourRepository();
         init();
     }
-/* creation initialisation des vue est appel de la méthode init creer plus bas
-
- */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

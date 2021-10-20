@@ -8,6 +8,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -63,6 +64,7 @@ public class DetailNeighbourActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail_neighbour);
         ButterKnife.bind(this);
         mApiService = DI.getNeighbourRepository();
+        getSupportActionBar().hide();
         Neighbour neighbour = (Neighbour) getIntent().getSerializableExtra(EXTRA_NEIGHBOUR);
         detailname.setText(neighbour.getName());
         namePicture.setText(neighbour.getName());
@@ -87,6 +89,7 @@ public class DetailNeighbourActivity extends AppCompatActivity {
         }
 
         fabAddFavorite.setOnClickListener(new View.OnClickListener() {
+            
             @Override
             public void onClick(View v) {
                 favorite = !favorite;

@@ -78,8 +78,5 @@ public class DummyNeighbourRepository implements NeighbourRepository {
     }
 }
 
-// Déclaration d'une liste  List<neighbour> neighbour
-// Développement des méthodes
-
 
 

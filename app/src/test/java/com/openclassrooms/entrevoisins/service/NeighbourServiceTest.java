@@ -90,4 +90,20 @@ public class NeighbourServiceTest {
         assertEquals(0, service.getFavorites().size());
         assertTrue(service.getNeighbours().contains(neighbourFavorite));
     }
+
+    @Test
+    public void deleteNeighbourOnFavoriteWithSuccess() {
+        Neighbour neighbourFavorite = service.getNeighbours().get(0);
+        service.setFavorite(neighbourFavorite, true);
+
+        service.deleteNeighbour(neighbourFavorite);
+
+
+        assertFalse(service.getFavorites().contains(neighbourFavorite));
+        assertFalse(service.getNeighbours().contains(neighbourFavorite));
+
+
+
+
+    }
 }

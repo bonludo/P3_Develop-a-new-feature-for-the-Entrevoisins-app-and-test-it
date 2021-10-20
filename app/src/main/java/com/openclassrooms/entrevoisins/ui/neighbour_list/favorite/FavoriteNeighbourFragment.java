@@ -34,12 +34,10 @@ public class FavoriteNeighbourFragment extends Fragment {
 
     private NeighbourRepository mNeighbourRepository;
     private List<Neighbour> mNeighboursFavorite;
+    private RecyclerView mRecyclerView;
     private OnNeighbourClickedListener onNeighbourClickedListener;
 
-    private RecyclerView mRecyclerView;
 
-
-    // TODO: Rename and change types and number of parameters
     public static FavoriteNeighbourFragment newInstance() {
         return new FavoriteNeighbourFragment();
     }
@@ -72,7 +70,6 @@ public class FavoriteNeighbourFragment extends Fragment {
     private void initList() {
         mNeighboursFavorite = mNeighbourRepository.getFavorites();
         mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighboursFavorite, onNeighbourClickedListener));
-        //3 intermédiaire qui met en contact l'activity et l'adapteur a l'aide de onNeighbourclickedListener
     }
 
     @Override

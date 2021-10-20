@@ -110,10 +110,10 @@ public class Neighbour implements Serializable {
     public boolean isFavorite() {
         return favorite;
     }
-
     public void setFavorite(boolean favorite) {
         this.favorite = favorite;
     }
+
 
 
     @Override
@@ -129,9 +129,3 @@ public class Neighbour implements Serializable {
         return Objects.hash(id);
     }
 }
-
-//a classe Object possède deux méthodes qui sont relatives à l'identité des objets : equals() et hashCode().
-//
-//La méthode equals() permet de tester l'égalité de deux objets d'un point de vue sémantique.
-//
-//La méthode hashCode() permet de renvoyer la valeur de hachage de l'objet sur lequel elle est invoquée.

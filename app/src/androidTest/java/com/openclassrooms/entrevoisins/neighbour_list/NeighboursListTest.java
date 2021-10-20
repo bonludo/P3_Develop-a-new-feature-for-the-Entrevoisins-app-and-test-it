@@ -18,17 +18,23 @@ import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.Espresso.pressBack;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.swipeLeft;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static androidx.test.espresso.matcher.ViewMatchers.assertThat;
+import static androidx.test.espresso.matcher.ViewMatchers.hasChildCount;
 import static androidx.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
 import static androidx.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withChild;
+import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withParent;
+import static androidx.test.espresso.matcher.ViewMatchers.withParentIndex;
+import static androidx.test.espresso.matcher.ViewMatchers.withResourceName;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static com.openclassrooms.entrevoisins.utils.RecyclerViewItemCountAssertion.withItemCount;
 import static org.hamcrest.CoreMatchers.instanceOf;
@@ -66,8 +72,6 @@ public class NeighboursListTest {
         // First scroll to the position that needs to be matched and click on it.
 
         onView(allOf(withId(R.id.list_neighbours), isCompletelyDisplayed())).check(matches(hasMinimumChildCount(1)));
-
-        //onData(allOf(is(instanceOf(ListNeighbourActivity.class)),is("Caroline"))).check(matches(isDisplayed()));
     }
 
     /**
@@ -76,29 +80,46 @@ public class NeighboursListTest {
     @Test
     public void myNeighboursList_deleteAction_shouldRemoveItem() {
         // Given : We remove the element at position 2
-        onView(ViewMatchers.withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT));
+
+
+        onView(allOf(withId(R.id.list_neighbours),isCompletelyDisplayed()))
+                .check(withItemCount(ITEMS_COUNT));
+
         // When perform a click on a delete icon
-        onView(ViewMatchers.withId(R.id.list_neighbours))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(1, new DeleteViewAction()));
+
+        onView(allOf(withId(R.id.list_neighbours),isCompletelyDisplayed())).perform(RecyclerViewActions.actionOnItemAtPosition(1, new DeleteViewAction()));
+
         // Then : the number of element is 11
-        onView(ViewMatchers.withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT - 1));
+        onView(allOf(withId(R.id.list_neighbours),isCompletelyDisplayed())).check(withItemCount(ITEMS_COUNT - 1));
+
     }
+
+
 
     @Test
     public void myNeighboursList_onClickOnNeighbour_shouldShowDetailAndName() {
+
+        onView(allOf(withId(R.id.list_neighbours),isCompletelyDisplayed())).perform(actionOnItemAtPosition(0,click()));
+
+        onView(allOf(withId(R.id.detailnamepicture))).check(matches(withText("Caroline")));
+
     }
 
     @Test
-    public void myFavoriteNeighbourList_shouldOnlyShowFavoriteNeighbour() {
+    public void myFavoriteNeighbourList_shouldOnlyShowFavoriteNeighbour() throws InterruptedException {
+
+        onView(allOf(withId(R.id.list_neighbours),isCompletelyDisplayed())).perform(actionOnItemAtPosition(0,click()));
+
+        onView(allOf(withId(R.id.fabAddfavorite))).perform(click());
+
+        pressBack();
+
+        onView(allOf(withId(R.id.list_neighbours),isCompletelyDisplayed())).perform(swipeLeft());
+
+        Thread.sleep(500);
+
+        onView(allOf(withId(R.id.list_neighbours), isCompletelyDisplayed())).check(matches(hasChildCount(1)));
 
     }
 }
-//test vérifiant que lorsqu’on clique sur un élément de la liste, l’écran de
-//détails est bien lancé ;
 
-//○ test vérifiant qu’au démarrage de ce nouvel écran, le TextView indiquant
-//le nom de l’utilisateur en question est bien rempli (not null);
-//○ test vérifiant qu’au clic sur le bouton de suppression, la liste d’utilisateurs
-//compte bien un utilisateur en moins ;
-//○ test vérifiant que l’onglet Favoris n’affiche que les voisins marqués comme
-//favoris.

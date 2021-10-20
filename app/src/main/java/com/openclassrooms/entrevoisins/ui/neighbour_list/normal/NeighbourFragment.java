@@ -44,7 +44,7 @@ public class NeighbourFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         onNeighbourClickedListener = (OnNeighbourClickedListener)context;
-        // le contexte represente l'activity (listneighbouractivity), on force le cast du context en listener
+
     }
 
     @Override

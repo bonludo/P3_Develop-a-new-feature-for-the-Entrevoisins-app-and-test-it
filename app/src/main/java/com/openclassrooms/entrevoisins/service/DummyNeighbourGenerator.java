@@ -35,15 +35,7 @@ public abstract class DummyNeighbourGenerator {
                     "+33 6 86 57 90 14", "www.facebook.fr/ludovic", "Bonjour ! Je souhaiterais faire de la marche nordique. Pas initiée, je recherche une ou plusieurs personnes susceptibles de m'accompagner !J'aime les jeux de cartes tels la belote et le tarot..",false)
     );
 
-//TODO (add for every neighbour a social network and a favorite boolean)
-
     static List<Neighbour> generateNeighbours() {
         return new ArrayList<>(DUMMY_NEIGHBOURS);
     }
 }
-
-/* Class abstraite car on ne connait pas le nombre de neighbour
-cette class contient un objet static (accessible partout) list <neighbour> [DUMMY NEIGHBOURS = Array.asList] avec leur different attribut
-
-*** méthode static (accessible partout) generateNeighbours retourne la liste des neighbour ***
- */

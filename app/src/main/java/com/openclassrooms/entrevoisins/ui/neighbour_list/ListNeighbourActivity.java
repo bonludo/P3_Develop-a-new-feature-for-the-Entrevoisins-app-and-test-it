@@ -45,8 +45,7 @@ public class ListNeighbourActivity extends AppCompatActivity implements OnNeighb
 
     @OnClick(R.id.add_neighbour)
     void addNeighbour() {
-        AddNeighbourActivity.navigate(this);
-    }
+        AddNeighbourActivity.navigate(this); }
 
     @Override
     public void onNeighbourClicked(Neighbour neighbour) {
